@@ -3,7 +3,6 @@
 import struct
 import alsaaudio
 import thread
-import wave
 
 def input_thread(list):
 	raw_input("Press enter to stop recording")
