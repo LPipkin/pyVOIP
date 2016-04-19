@@ -5,18 +5,12 @@ import alsaaudio
 import thread
 from fileSendClient import fileSendClientMain
 
-'''
 def input_thread(list):
 	raw_input("Press enter to stop recording")
 	list.append(None)
-'''
-
-recording = True
-
-def StopRecording():
-	recording = False
 
 def WorkingRecording():
+
 	sound_out = alsaaudio.PCM()  
 	# open default sound output
 	sound_out.setchannels(1)
@@ -39,8 +33,8 @@ def WorkingRecording():
 	#total_length = 0
 	list = []
 	wf = open(output_filename, 'wb')
-	#thread.start_new_thread(input_thread, (list, ))
-	while recording:
+	thread.start_new_thread(input_thread, (list, ))
+	while not list:
 	    sample_length, sample = sound_in.read()
 	    #print("length " + str(sample_length))
 	    #total_length += sample_length
