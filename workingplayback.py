@@ -1,6 +1,8 @@
 import struct
 import alsaaudio
+from fileReceiveClient import fileReceiveClientMain
 
+fileReceiveClientMain()
 f = open ("test_recording.wav")
 
 sound_out = alsaaudio.PCM()

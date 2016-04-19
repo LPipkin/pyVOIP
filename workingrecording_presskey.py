@@ -3,6 +3,7 @@
 import struct
 import alsaaudio
 import thread
+from fileSendClient import fileSendClientMain
 
 def input_thread(list):
 	raw_input("Press enter to stop recording")
@@ -39,6 +40,8 @@ while not list:
     wf.write(sample)
 
 wf.close()
+
+fileSendClientMain()
     
 print("=========================================================")
 print("Recording complete, file created: " + output_filename)
