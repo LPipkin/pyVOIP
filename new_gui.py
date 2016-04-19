@@ -4,7 +4,7 @@ from workingplayback import WorkingPlayback
 from workingrecording_presskey import WorkingRecording
 from PyQt4 import QtGui, QtCore
 import threading
-import pyautogui
+
 
 class Window(QtGui.QMainWindow):
 
