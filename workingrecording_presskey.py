@@ -9,42 +9,47 @@ def input_thread(list):
 	raw_input("Press enter to stop recording")
 	list.append(None)
 
-sound_out = alsaaudio.PCM()  
-# open default sound output
-sound_out.setchannels(1)
-# use only one channel of audio (aka mono)
-#sound_out.setperiodsize(5) 
-# buffer size, default is 32
-sound_out.setrate(8000)
+def WorkingRecording():
 
-sound_in = alsaaudio.PCM(type=alsaaudio.PCM_CAPTURE)  
-# default recording device
-sound_in.setchannels(1)  
-# use only one channel of audio (aka mono)
-#sound_in.setperiodsize(5) 
-# buffer size, default is 32
-sound_in.setrate(8000)
-sound_in.setperiodsize(160)
+	sound_out = alsaaudio.PCM()  
+	# open default sound output
+	sound_out.setchannels(1)
+	# use only one channel of audio (aka mono)
+	#sound_out.setperiodsize(5) 
+	# buffer size, default is 32
+	sound_out.setrate(8000)
 
-output_filename = "test_recording.wav"
+	sound_in = alsaaudio.PCM(type=alsaaudio.PCM_CAPTURE)  
+	# default recording device
+	sound_in.setchannels(1)  
+	# use only one channel of audio (aka mono)
+	#sound_in.setperiodsize(5) 
+	# buffer size, default is 32
+	sound_in.setrate(8000)
+	sound_in.setperiodsize(160)
 
-#total_length = 0
-list = []
-wf = open(output_filename, 'wb')
-thread.start_new_thread(input_thread, (list, ))
-while not list:
-    sample_length, sample = sound_in.read()
-    #print("length " + str(sample_length))
-    #total_length += sample_length
-    sound_out.write(sample)
-    wf.write(sample)
+	output_filename = "test_recording.wav"
 
-wf.close()
+	#total_length = 0
+	list = []
+	wf = open(output_filename, 'wb')
+	thread.start_new_thread(input_thread, (list, ))
+	while not list:
+	    sample_length, sample = sound_in.read()
+	    #print("length " + str(sample_length))
+	    #total_length += sample_length
+	    sound_out.write(sample)
+	    wf.write(sample)
 
-fileSendClientMain()
-    
-print("=========================================================")
-print("Recording complete, file created: " + output_filename)
-print("=========================================================")
+	wf.close()
 
-thread.exit()
+	fileSendClientMain()
+	    
+	print("=========================================================")
+	print("Recording complete, file created: " + output_filename)
+	print("=========================================================")
+
+	thread.exit()
+
+if __name__ == '__main__':
+    WorkingRecording():
