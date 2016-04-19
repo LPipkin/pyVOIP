@@ -5,9 +5,16 @@ import alsaaudio
 import thread
 from fileSendClient import fileSendClientMain
 
+recording = True
+
+def StopRecording():
+	recording = False
+
+'''
 def input_thread(list):
 	raw_input("Press enter to stop recording")
 	list.append(None)
+'''
 
 def WorkingRecording():
 
@@ -33,8 +40,8 @@ def WorkingRecording():
 	#total_length = 0
 	list = []
 	wf = open(output_filename, 'wb')
-	thread.start_new_thread(input_thread, (list, ))
-	while not list:
+	#thread.start_new_thread(input_thread, (list, ))
+	while recording:
 	    sample_length, sample = sound_in.read()
 	    #print("length " + str(sample_length))
 	    #total_length += sample_length
@@ -52,4 +59,4 @@ def WorkingRecording():
 	thread.exit()
 
 if __name__ == '__main__':
-    WorkingRecording():
+    WorkingRecording()
