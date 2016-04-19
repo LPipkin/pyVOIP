@@ -41,7 +41,7 @@ def WorkingRecording():
 	#total_length = 0
 	list = []
 	wf = open(output_filename, 'wb')
-	#thread.start_new_thread(input_thread, (list, ))
+	thread.start_new_thread(input_thread, (list, ))
 	while not list:
 	    sample_length, sample = sound_in.read()
 	    #print("length " + str(sample_length))
