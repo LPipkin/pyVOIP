@@ -24,5 +24,5 @@ def fileSendClientMain():
 
     s.close()
 
-if __name__ == '__main__':
+sif __name__ == '__main__':
     fileSendClientMain()
